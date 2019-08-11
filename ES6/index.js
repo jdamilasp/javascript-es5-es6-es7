@@ -230,9 +230,63 @@ function asyncFunc(i) {
     });
 }
 
-for(let i = 0; i < 3; i++){
-    console.log(`i value -> ${i}`)
-    asyncFunc(i)
-        .then((result) => console.log(` ${i} result -> ${result}`))
-        .catch((err) => console.log(` ${i} err -> ${err}`))
+// for(let i = 0; i < 3; i++){
+//     console.log(`i value -> ${i}`)
+//     asyncFunc(i)
+//         .then((result) => console.log(` ${i} result -> ${result}`))
+//         .catch((err) => console.log(` ${i} err -> ${err}`))
+// }
+
+// more example with ES6 
+
+console.log(" ES6 : couple of example --------------------------- ")
+
+const obj1 = { a: 1, b: 2};
+const obj2 = { a: 5, c: 3, d: 4}
+// var obj4 = Object.assign(obj1, obj2) 
+const obj3 = {...obj1, ...obj2}; // create new object with merge result 
+console.log(obj1, obj2, obj3);
+
+// var a = obj2.a
+// var b = obj2.b 
+const { a, b, c, d } = obj2;
+console.log(a, b, c, d)
+
+// var obj5 = { a : a, b : b, c : c }
+const obj5 = { a, b, c, d}
+console.log(`Obj5 => `, obj5)
+
+// callback vs promise 
+function isGreater( a, b, cb) {
+    console.log(" a, b = ", a, ',', b)
+    var greater = false;
+    if(a > b){
+        greater = true;
+    }
+    cb(greater);
 }
+isGreater(1,5, function(result) {
+    if(result){
+        console.log('greater')
+    }else{
+        console.log('smaller')
+    }
+})
+
+const isGreaterNew = (a,b) => {
+    return new Promise((resolve, reject) => {
+        if(a > b){
+            resolve(true)
+        }else{
+            reject(false)
+        }
+    })
+}
+
+isGreaterNew(10,3)
+.then((result) => {
+    console.log(' Promise Resolve : ', result)
+})
+.catch((err) => {
+    console.log(' Promise Reject : ', err)
+})
