@@ -1,4 +1,4 @@
-    console.log(" Array Recaps -----------------")
+console.log(" Array Recaps -----------------")
 // Array Recap
 
 var names = ['John', 'Jane', 'Judy', 'Joe', 'Jack', 'Jessie', 'Julie'];
