@@ -161,3 +161,78 @@ let sortingArray = (arr = [], direction = 'assending') => {
 sortingArray();
 sortingArray([1,2,3,4]);
 sortingArray([6,7,3], 'dessending')
+
+// 8. Rest and spread operators 
+console.log(' ES6: Rest and Spread Operators ')
+
+/**
+ * Spread : It enables extraction of array or object content as single elements
+ */
+
+ const array5 = ['red', 'blue', 'green'];
+ const array5New = [...array5].map((val) => val.toUpperCase());
+
+ console.log(`Copy of ${array5} is ${array5New}`)
+
+ const array5MergeResultExtraValue = [...array5, ...array5New, "invalid-color"];
+ array5.push("RED-RED")
+ console.log(array5MergeResultExtraValue, array5)
+
+ // Rest 
+
+ function printColors(frist, second, third = 'green', ...others){
+    console.log(` First : ${frist}, Second : ${second}, Third : ${third}, Others : ${others}`)
+ }
+
+ printColors("-- First Value --", ...array5, "- Last Value -")
+
+// 9. Destructuring 
+console.log(" ES6 : Destructuring -> Array and Object ")
+// array 
+var array6 = [1,2,3,4,5,6,7,8]
+
+function printFirstAndSecondElement([first,second]){
+    console.log(`1. first ${first}, second ${second}`);
+}
+const printSecondAndFourthElement = ([,second,,fouth]) => console.log(`2. second ${second}, fourth ${fouth}`);
+
+printFirstAndSecondElement(array6);
+printSecondAndFourthElement(array6);
+printSecondAndFourthElement(array5New)
+
+// of object 
+const printBasicInfo = ({firstName, lastName, age}) => {
+    console.log(`${firstName}, ${lastName}, ${age}`)
+}
+
+class Person {
+    constructor(firstName, lastName, age = 25){
+        this.firstName = firstName,
+        this.lastName = lastName,
+        this.age = age,
+        this.job = "SE"
+    }
+
+}
+
+let person1 = new Person('Amila', 'Sampath');
+
+printBasicInfo(person1)
+
+// 10. Promises 
+console.log('ES6 : Promises -------------------------------- ')
+function asyncFunc(i) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const result = Math.random();
+            result > 0.5 ? resolve(result) : reject('Unable to Calculate :(');
+        }, 5000 * i)
+    });
+}
+
+for(let i = 0; i < 3; i++){
+    console.log(`i value -> ${i}`)
+    asyncFunc(i)
+        .then((result) => console.log(` ${i} result -> ${result}`))
+        .catch((err) => console.log(` ${i} err -> ${err}`))
+}
